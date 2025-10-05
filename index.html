@@ -1,326 +1,716 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>侯杰 - 前端开发者个人介绍</title>
+    <title>侯杰 - 前端开发工程师 | 现代化个人简历</title>
+    <meta name="description" content="侯杰，前端开发工程师，专注Vue.js生态系统开发，具备丰富的项目经验和技术能力">
+    <meta name="keywords" content="侯杰,前端开发,Vue.js,JavaScript,HTML5,CSS3,响应式设计">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#06b6d4',
-                        secondary: '#0891b2',
-                        accent: '#10b981',
-                        dark: '#1e293b',
-                        light: '#f8fafc'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .gradient-bg {
-                background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-            }
-            .card-hover {
-                transition: all 0.3s ease;
-            }
-            .card-hover:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            }
-            .skill-bar {
-                transition: width 1s ease-in-out;
-            }
-            .fade-in {
-                animation: fadeIn 0.8s ease-in-out;
-            }
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(20px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            .slide-in-left {
-                animation: slideInLeft 0.8s ease-in-out;
-            }
-            @keyframes slideInLeft {
-                from { opacity: 0; transform: translateX(-30px); }
-                to { opacity: 1; transform: translateX(0); }
-            }
-            .slide-in-right {
-                animation: slideInRight 0.8s ease-in-out;
-            }
-            @keyframes slideInRight {
-                from { opacity: 0; transform: translateX(30px); }
-                to { opacity: 1; transform: translateX(0); }
-            }
-        }
-    </style>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-50 font-sans">
+
+<body>
     <!-- 导航栏 -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" id="navbar">
+    <nav class="glass fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-primary">
-                    <i class="fa fa-code mr-2"></i>侯杰
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-code text-white text-sm"></i>
+                    </div>
+                    <div class="text-xl font-bold" style="color: var(--text-primary)">侯杰</div>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-primary transition-colors">首页</a>
-                    <a href="#skills" class="text-gray-700 hover:text-primary transition-colors">技能</a>
-                    <a href="#education" class="text-gray-700 hover:text-primary transition-colors">教育</a>
-                    <a href="#projects" class="text-gray-700 hover:text-primary transition-colors">项目</a>
-                    <a href="#experience" class="text-gray-700 hover:text-primary transition-colors">经历</a>
-                    <a href="#contact" class="text-gray-700 hover:text-primary transition-colors">联系</a>
+
+                <!-- 桌面端导航 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link">首页</a>
+                    <a href="#skills" class="nav-link">技能</a>
+                    <a href="#education" class="nav-link">教育</a>
+                    <a href="#projects" class="nav-link">项目</a>
+                    <a href="#experience" class="nav-link">经历</a>
+                    <a href="#contact" class="nav-link">联系</a>
+
+                    <!-- 主题切换按钮 -->
+                    <button class="theme-toggle" id="theme-toggle" aria-label="切换主题">
+                        <i class="fas fa-sun theme-toggle-icon sun"></i>
+                        <i class="fas fa-moon theme-toggle-icon moon"></i>
+                    </button>
                 </div>
-                <button class="md:hidden text-gray-700" id="mobile-menu-btn">
-                    <i class="fa fa-bars text-xl"></i>
+
+                <!-- 移动端菜单按钮 -->
+                <button class="md:hidden p-2 rounded-lg glass-hover" id="mobile-menu-btn" aria-label="打开菜单">
+                    <i class="fas fa-bars text-xl" style="color: var(--text-primary)"></i>
                 </button>
             </div>
         </div>
-        <!-- 移动端菜单 -->
-        <div class="md:hidden bg-white shadow-lg hidden" id="mobile-menu">
-            <div class="container mx-auto px-6 py-4 space-y-4">
-                <a href="#home" class="block text-gray-700 hover:text-primary transition-colors">首页</a>
-                <a href="#skills" class="block text-gray-700 hover:text-primary transition-colors">技能</a>
-                <a href="#education" class="block text-gray-700 hover:text-primary transition-colors">教育</a>
-                <a href="#projects" class="block text-gray-700 hover:text-primary transition-colors">项目</a>
-                <a href="#experience" class="block text-gray-700 hover:text-primary transition-colors">经历</a>
-                <a href="#contact" class="block text-gray-700 hover:text-primary transition-colors">联系</a>
+
+        <!-- 移动端下拉菜单 -->
+        <div class="md:hidden absolute top-full left-0 right-0 glass hidden transform -translate-y-2 opacity-0 transition-all duration-300 ease-out z-50" id="mobile-menu" style="border-top: 1px solid var(--border-color)">
+            <div class="container mx-auto px-6 py-6">
+                <!-- 导航菜单项 -->
+                <nav class="space-y-3">
+                    <a href="#home" class="mobile-nav-item group flex items-center space-x-4 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center group-hover:from-blue-500 group-hover:to-cyan-500 transition-all duration-300 shadow-lg">
+                            <i class="fas fa-home text-blue-500 group-hover:text-white transition-colors duration-300 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-lg" style="color: var(--text-primary)">首页</div>
+                            <div class="text-sm opacity-70" style="color: var(--text-secondary)">Home - 个人介绍</div>
+                        </div>
+                        <i class="fas fa-chevron-right opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" style="color: var(--accent-primary)"></i>
+                    </a>
+
+                    <a href="#skills" class="mobile-nav-item group flex items-center space-x-4 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-teal-500/20 flex items-center justify-center group-hover:from-green-500 group-hover:to-teal-500 transition-all duration-300 shadow-lg">
+                            <i class="fas fa-code text-green-500 group-hover:text-white transition-colors duration-300 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-lg" style="color: var(--text-primary)">技能</div>
+                            <div class="text-sm opacity-70" style="color: var(--text-secondary)">Skills - 专业技能展示</div>
+                        </div>
+                        <i class="fas fa-chevron-right opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" style="color: var(--accent-primary)"></i>
+                    </a>
+
+                    <a href="#education" class="mobile-nav-item group flex items-center space-x-4 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-indigo-500/20 flex items-center justify-center group-hover:from-purple-500 group-hover:to-indigo-500 transition-all duration-300 shadow-lg">
+                            <i class="fas fa-graduation-cap text-purple-500 group-hover:text-white transition-colors duration-300 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-lg" style="color: var(--text-primary)">教育</div>
+                            <div class="text-sm opacity-70" style="color: var(--text-secondary)">Education - 学习经历</div>
+                        </div>
+                        <i class="fas fa-chevron-right opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" style="color: var(--accent-primary)"></i>
+                    </a>
+
+                    <a href="#projects" class="mobile-nav-item group flex items-center space-x-4 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center group-hover:from-orange-500 group-hover:to-red-500 transition-all duration-300 shadow-lg">
+                            <i class="fas fa-briefcase text-orange-500 group-hover:text-white transition-colors duration-300 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-lg" style="color: var(--text-primary)">项目</div>
+                            <div class="text-sm opacity-70" style="color: var(--text-secondary)">Projects - 项目作品</div>
+                        </div>
+                        <i class="fas fa-chevron-right opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" style="color: var(--accent-primary)"></i>
+                    </a>
+
+                    <a href="#experience" class="mobile-nav-item group flex items-center space-x-4 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center group-hover:from-cyan-500 group-hover:to-blue-500 transition-all duration-300 shadow-lg">
+                            <i class="fas fa-user-tie text-cyan-500 group-hover:text-white transition-colors duration-300 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-lg" style="color: var(--text-primary)">经历</div>
+                            <div class="text-sm opacity-70" style="color: var(--text-secondary)">Experience - 工作经历</div>
+                        </div>
+                        <i class="fas fa-chevron-right opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" style="color: var(--accent-primary)"></i>
+                    </a>
+
+                    <a href="#contact" class="mobile-nav-item group flex items-center space-x-4 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-rose-500/20 flex items-center justify-center group-hover:from-pink-500 group-hover:to-rose-500 transition-all duration-300 shadow-lg">
+                            <i class="fas fa-envelope text-pink-500 group-hover:text-white transition-colors duration-300 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-lg" style="color: var(--text-primary)">联系</div>
+                            <div class="text-sm opacity-70" style="color: var(--text-secondary)">Contact - 联系方式</div>
+                        </div>
+                        <i class="fas fa-chevron-right opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" style="color: var(--accent-primary)"></i>
+                    </a>
+                </nav>
+
+                <!-- 分割线 -->
+                <div class="my-6 border-t" style="border-color: var(--border-color)"></div>
+
+                <!-- 底部功能区 -->
+                <div class="space-y-4">
+                    <!-- 主题切换 -->
+                    <button class="w-full flex items-center justify-between p-4 rounded-xl glass-hover transition-all duration-300 group" id="mobile-theme-toggle" style="justify-content: center;">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center group-hover:from-yellow-500 group-hover:to-orange-500 transition-all duration-300 shadow-lg">
+                                <i class="fas fa-palette text-yellow-500 group-hover:text-white transition-colors duration-300 text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-lg text-left" style="color: var(--text-primary)">主题切换</div>
+                                <div class="text-sm opacity-70 text-left" style="color: var(--text-secondary)">Theme - 亮色/暗色模式</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-sun theme-toggle-icon sun text-yellow-500 text-lg"></i>
+                            <i class="fas fa-moon theme-toggle-icon moon text-blue-500 text-lg"></i>
+                        </div>
+                    </button>
+
+                    <!-- 快捷联系方式 -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="mailto:2669932873@qq.com" class="flex flex-col items-center justify-center p-4 rounded-xl glass-hover hover-glow transition-all duration-300 group">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-indigo-500/20 flex items-center justify-center group-hover:from-blue-500 group-hover:to-indigo-500 transition-all duration-300 mb-2">
+                                <i class="fas fa-envelope text-blue-500 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                            <span class="text-sm font-bold" style="color: var(--text-primary)">发送邮件</span>
+                        </a>
+                        <a href="tel:15984273217" class="flex flex-col items-center justify-center p-4 rounded-xl glass-hover hover-glow transition-all duration-300 group">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500/20 to-teal-500/20 flex items-center justify-center group-hover:from-green-500 group-hover:to-teal-500 transition-all duration-300 mb-2">
+                                <i class="fas fa-phone text-green-500 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                            <span class="text-sm font-bold" style="color: var(--text-primary)">拨打电话</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- 英雄区域 -->
-    <section id="home" class="min-h-screen flex items-center gradient-bg relative overflow-hidden">
-        <!-- 背景装饰 -->
-        <div class="absolute inset-0 opacity-10">
-            <img src="https://doc.doubao.com/s/noNmvO11Slc/" alt="背景" class="w-full h-full object-cover">
+    <section id="home" class="min-h-screen flex items-center gradient-bg relative overflow-hidden"
+        style="background: var(--bg-primary)">
+        <!-- 动态背景装饰 -->
+        <div class="absolute inset-0">
+            <!-- 几何图形装饰 -->
+            <div
+                class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-xl animate-pulse">
+            </div>
+            <div class="absolute bottom-32 right-16 w-48 h-48 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-full blur-2xl animate-pulse"
+                style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-lg animate-pulse"
+                style="animation-delay: 2s;"></div>
+
+            <!-- 粒子效果背景 -->
+            <div class="particles absolute inset-0 opacity-30"></div>
         </div>
+
         <div class="container mx-auto px-6 py-20 relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-white fade-in">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                        你好，我是<br>
-                        <span class="text-yellow-300">侯杰</span>
-                    </h1>
-                    <p class="text-xl md:text-2xl mb-8 text-blue-100">
-                        前端开发工程师
-                    </p>
-                    <p class="text-lg mb-8 text-blue-100 leading-relaxed">
-                        专注于Vue.js生态系统开发，擅长响应式设计和用户体验优化。
-                        追求代码质量和性能的完美平衡。
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#contact" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                            <i class="fa fa-envelope mr-2"></i>联系我
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- 左侧内容 -->
+                <div class="fade-in">
+                    <div class="mb-8">
+                        <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+                            <span style="color: var(--text-inverse)">你好，我是</span><br>
+                            <span
+                                class="typewriter bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">侯杰</span>
+                        </h1>
+                        <div class="text-2xl lg:text-3xl mb-8 font-semibold">
+                            <span class="typing-text">前端开发工程师</span>
+                        </div>
+                        <p class="text-lg lg:text-xl mb-8 leading-relaxed max-w-2xl">
+                            专注于Vue.js生态系统开发，擅长响应式设计和用户体验优化。
+                            追求代码质量和性能的完美平衡，致力于创造优雅的前端解决方案。
+                        </p>
+                    </div>
+
+                    <!-- 技能标签 -->
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <span class="glass px-4 py-2 rounded-full text-sm font-medium"
+                            style="color: var(--text-inverse)">
+                            <i class="fab fa-vuejs mr-2"></i>Vue.js
+                        </span>
+                        <span class="glass px-4 py-2 rounded-full text-sm font-medium"
+                            style="color: var(--text-inverse)">
+                            <i class="fab fa-js-square mr-2"></i>JavaScript
+                        </span>
+                        <span class="glass px-4 py-2 rounded-full text-sm font-medium"
+                            style="color: var(--text-inverse)">
+                            <i class="fab fa-html5 mr-2"></i>HTML5
+                        </span>
+                        <span class="glass px-4 py-2 rounded-full text-sm font-medium"
+                            style="color: var(--text-inverse)">
+                            <i class="fab fa-css3-alt mr-2"></i>CSS3
+                        </span>
+                    </div>
+
+                    <!-- 行动按钮 -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="btn btn-primary hover-glow">
+                            <i class="fas fa-envelope mr-2"></i>联系我
                         </a>
-                        <a href="#projects" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-colors">
-                            <i class="fa fa-briefcase mr-2"></i>查看项目
+                        <a href="#projects" class="btn btn-secondary hover-glow">
+                            <i class="fas fa-briefcase mr-2"></i>查看项目
                         </a>
                     </div>
                 </div>
+
+                <!-- 右侧个人信息卡片 -->
                 <div class="slide-in-right">
                     <div class="relative">
-                        <div class="bg-white rounded-2xl shadow-2xl p-8 text-center">
-                            <img src="https://doc.doubao.com/s/cOLoIDKBZDU/" alt="侯杰" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-primary">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-2">侯杰</h3>
-                            <p class="text-primary font-semibold mb-4">前端开发工程师</p>
-                            <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                                <div>
-                                    <i class="fa fa-calendar mr-2 text-primary"></i>21岁
+                        <!-- 主卡片 -->
+                        <div class="card tilt-3d text-center relative overflow-hidden">
+                            <!-- 卡片背景装饰 -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-lg">
+                            </div>
+
+                            <div class="relative z-10">
+                                <!-- 头像 -->
+                                <div class="relative inline-block mb-6">
+                                    <img src="/static/images/houjie.jpeg" alt="侯杰"
+                                        class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-gradient-to-r from-blue-400 to-purple-500 shadow-xl">
+                                    <div
+                                        class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-500/20 animate-pulse">
+                                    </div>
                                 </div>
-                                <div>
-                                    <i class="fa fa-map-marker mr-2 text-primary"></i>成都
+
+                                <!-- 基本信息 -->
+                                <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary)">侯杰</h3>
+                                <p class="font-semibold mb-6" style="color: var(--accent-primary)">前端开发工程师</p>
+
+                                <!-- 详细信息网格 -->
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div class="glass-hover p-3 rounded-lg">
+                                        <i class="fas fa-calendar-alt mb-2" style="color: var(--accent-primary)"></i>
+                                        <div style="color: var(--text-secondary)">21岁</div>
+                                    </div>
+                                    <div class="glass-hover p-3 rounded-lg">
+                                        <i class="fas fa-map-marker-alt mb-2" style="color: var(--accent-primary)"></i>
+                                        <div style="color: var(--text-secondary)">成都</div>
+                                    </div>
+                                    <div class="glass-hover p-3 rounded-lg">
+                                        <i class="fas fa-graduation-cap mb-2" style="color: var(--accent-primary)"></i>
+                                        <div style="color: var(--text-secondary)">本科在读</div>
+                                    </div>
+                                    <div class="glass-hover p-3 rounded-lg">
+                                        <i class="fas fa-briefcase mb-2" style="color: var(--accent-primary)"></i>
+                                        <div style="color: var(--text-secondary)">实习经验</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <i class="fa fa-graduation-cap mr-2 text-primary"></i>本科在读
-                                </div>
-                                <div>
-                                    <i class="fa fa-briefcase mr-2 text-primary"></i>实习经验
+
+                                <!-- 社交链接 -->
+                                <div class="flex justify-center space-x-4 mt-6">
+                                    <a href="#"
+                                        class="w-10 h-10 glass-hover rounded-full flex items-center justify-center hover-glow">
+                                        <i class="fab fa-github" style="color: var(--text-primary)"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="w-10 h-10 glass-hover rounded-full flex items-center justify-center hover-glow">
+                                        <i class="fab fa-weixin" style="color: var(--text-primary)"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="w-10 h-10 glass-hover rounded-full flex items-center justify-center hover-glow">
+                                        <i class="fab fa-linkedin" style="color: var(--text-primary)"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
                         <!-- 装饰元素 -->
-                        <div class="absolute -top-4 -right-4 w-20 h-20 bg-accent rounded-full opacity-20"></div>
-                        <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-yellow-400 rounded-full opacity-20"></div>
+                        <div
+                            class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-r from-yellow-400/30 to-orange-500/30 rounded-full blur-xl animate-pulse">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-r from-cyan-400/30 to-blue-500/30 rounded-full blur-lg animate-pulse"
+                            style="animation-delay: 1.5s;"></div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- 滚动提示 -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-            <i class="fa fa-chevron-down text-2xl"></i>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="glass p-3 rounded-full">
+                <i class="fas fa-chevron-down text-xl" style="color: var(--text-inverse)"></i>
+            </div>
         </div>
     </section>
 
     <!-- 技能展示 -->
-    <section id="skills" class="py-20 bg-white">
+    <section id="skills" class="py-20 skills-section" style="background: var(--bg-primary)">
         <div class="container mx-auto px-6">
+            <!-- 标题区域 -->
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">专业技能</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6" style="color: var(--text-primary)">
+                    专业技能
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mt-4 rounded-full"></div>
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto leading-relaxed" style="color: var(--text-secondary)">
                     掌握现代前端开发技术栈，具备完整的项目开发和优化经验
                 </p>
             </div>
-            
+
             <!-- 技能图标展示 -->
             <div class="mb-16 slide-in-left">
-                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8">
-                    <img src="https://doc.doubao.com/s/kZuE_3sSIJU/" alt="技能图标" class="w-full max-w-4xl mx-auto rounded-xl shadow-lg">
+                <div class="card relative overflow-hidden">
+                    <!-- 背景装饰 -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-600/5"></div>
+                    <div class="relative z-10">
+                        <img src="/static/images/img3.jpeg" alt="技能图标"
+                            class="w-full max-w-4xl mx-auto rounded-xl shadow-lg hover:scale-105 transition-transform duration-500">
+                    </div>
                 </div>
             </div>
 
-            <!-- 详细技能进度条 -->
-            <div class="grid md:grid-cols-2 gap-8 slide-in-right">
-                <div class="space-y-6">
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-700">HTML5/CSS3</span>
-                            <span class="text-primary font-bold">95%</span>
+            <!-- 技能卡片网格 -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-16">
+                <!-- 前端技术 -->
+                <div class="card scale-in">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center" style="color: var(--text-primary)">
+                        <i class="fas fa-code mr-3 text-blue-500"></i>
+                        前端技术
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <i class="fab fa-html5 mr-3 text-orange-500 text-xl"></i>
+                                    <span class="font-semibold" style="color: var(--text-primary)">HTML5/CSS3</span>
+                                </div>
+                                <span class="font-bold" style="color: var(--accent-primary)">95%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full" style="background: var(--bg-secondary)">
+                                <div class="skill-bar h-2 rounded-full" data-percentage="95"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="bg-primary h-3 rounded-full skill-bar" style="width: 95%"></div>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <i class="fab fa-js-square mr-3 text-yellow-500 text-xl"></i>
+                                    <span class="font-semibold" style="color: var(--text-primary)">JavaScript</span>
+                                </div>
+                                <span class="font-bold" style="color: var(--accent-primary)">90%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full" style="background: var(--bg-secondary)">
+                                <div class="skill-bar h-2 rounded-full" data-percentage="90"></div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-700">JavaScript</span>
-                            <span class="text-primary font-bold">90%</span>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <i class="fab fa-vuejs mr-3 text-green-500 text-xl"></i>
+                                    <span class="font-semibold" style="color: var(--text-primary)">Vue.js 3</span>
+                                </div>
+                                <span class="font-bold" style="color: var(--accent-primary)">88%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full" style="background: var(--bg-secondary)">
+                                <div class="skill-bar h-2 rounded-full" data-percentage="88"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="bg-primary h-3 rounded-full skill-bar" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-700">Vue.js 3</span>
-                            <span class="text-primary font-bold">88%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="bg-primary h-3 rounded-full skill-bar" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-700">Uni-app</span>
-                            <span class="text-primary font-bold">85%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="bg-primary h-3 rounded-full skill-bar" style="width: 85%"></div>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-mobile-alt mr-3 text-purple-500 text-xl"></i>
+                                    <span class="font-semibold" style="color: var(--text-primary)">Uni-app</span>
+                                </div>
+                                <span class="font-bold" style="color: var(--accent-primary)">85%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full" style="background: var(--bg-secondary)">
+                                <div class="skill-bar h-2 rounded-full" data-percentage="85"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="space-y-6">
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-700">CSS框架 (Flex/Grid)</span>
-                            <span class="text-primary font-bold">92%</span>
+
+                <!-- 开发技能 -->
+                <div class="card scale-in">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center" style="color: var(--text-primary)">
+                        <i class="fas fa-tools mr-3 text-purple-500"></i>
+                        开发技能
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-th-large mr-3 text-blue-500 text-xl"></i>
+                                    <span class="font-semibold" style="color: var(--text-primary)">CSS框架
+                                        (Flex/Grid)</span>
+                                </div>
+                                <span class="font-bold" style="color: var(--accent-primary)">92%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full" style="background: var(--bg-secondary)">
+                                <div class="skill-bar h-2 rounded-full" data-percentage="92"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="bg-primary h-3 rounded-full skill-bar" style="width: 92%"></div>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <i class="fab fa-git-alt mr-3 text-red-500 text-xl"></i>
+                                    <span class="font-semibold" style="color: var(--text-primary)">Git版本控制</span>
+                                </div>
+                                <span class="font-bold" style="color: var(--accent-primary)">80%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full" style="background: var(--bg-secondary)">
+                                <div class="skill-bar h-2 rounded-full" data-percentage="80"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-tablet-alt mr-3 text-cyan-500 text-xl"></i>
+                                    <span class="font-semibold" style="color: var(--text-primary)">响应式设计</span>
+                                </div>
+                                <span class="font-bold" style="color: var(--accent-primary)">90%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full" style="background: var(--bg-secondary)">
+                                <div class="skill-bar h-2 rounded-full" data-percentage="90"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-tachometer-alt mr-3 text-green-500 text-xl"></i>
+                                    <span class="font-semibold" style="color: var(--text-primary)">性能优化</span>
+                                </div>
+                                <span class="font-bold" style="color: var(--accent-primary)">78%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full" style="background: var(--bg-secondary)">
+                                <div class="skill-bar h-2 rounded-full" data-percentage="78"></div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-700">Git版本控制</span>
-                            <span class="text-primary font-bold">80%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="bg-primary h-3 rounded-full skill-bar" style="width: 80%"></div>
-                        </div>
+                </div>
+            </div>
+
+            <!-- 技能特色展示 -->
+            <div class="grid md:grid-cols-3 gap-6 fade-in">
+                <div class="card text-center hover-glow">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-2xl"></i>
                     </div>
-                    
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-700">响应式设计</span>
-                            <span class="text-primary font-bold">90%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="bg-primary h-3 rounded-full skill-bar" style="width: 90%"></div>
-                        </div>
+                    <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary)">高效开发</h4>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                        熟练使用现代前端工具链，提升开发效率和代码质量
+                    </p>
+                </div>
+
+                <div class="card text-center hover-glow">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-palette text-white text-2xl"></i>
                     </div>
-                    
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-700">性能优化</span>
-                            <span class="text-primary font-bold">78%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="bg-primary h-3 rounded-full skill-bar" style="width: 78%"></div>
-                        </div>
+                    <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary)">UI/UX设计</h4>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                        注重用户体验设计，创造美观且易用的界面
+                    </p>
+                </div>
+
+                <div class="card text-center hover-glow">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-cogs text-white text-2xl"></i>
                     </div>
+                    <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary)">性能优化</h4>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                        深度优化前端性能，确保最佳的用户体验
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 教育背景 -->
-    <section id="education" class="py-20 bg-gray-50">
+    <section id="education" class="py-20" style="background: var(--bg-secondary)">
         <div class="container mx-auto px-6">
+            <!-- 标题区域 -->
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">教育背景</h2>
-                <p class="text-xl text-gray-600">持续学习，追求卓越</p>
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6" style="color: var(--text-primary)">
+                    教育背景
+                    <div class="w-24 h-1 bg-gradient-to-r from-green-500 to-teal-600 mx-auto mt-4 rounded-full"></div>
+                </h2>
+                <p class="text-xl leading-relaxed" style="color: var(--text-secondary)">
+                    持续学习，追求卓越
+                </p>
             </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover slide-in-left">
-                    <div class="flex items-start space-x-6">
-                        <div class="flex-shrink-0">
-                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl">
-                                <i class="fa fa-graduation-cap"></i>
+
+            <!-- 时间轴布局 -->
+            <div class="max-w-5xl mx-auto relative">
+                <!-- 时间轴线 -->
+                <div
+                    class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-600 hidden md:block">
+                </div>
+
+                <!-- 教育卡片 -->
+                <div class="relative">
+                    <!-- 时间轴节点 -->
+                    <div class="absolute left-6 top-8 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full border-4 border-white shadow-lg hidden md:block"
+                        style="border-color: var(--bg-primary)"></div>
+
+                    <div class="md:ml-20 slide-in-left">
+                        <div class="card relative overflow-hidden">
+                            <!-- 背景装饰 -->
+                            <div
+                                class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-full -translate-y-8 translate-x-8">
                             </div>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex flex-wrap justify-between items-start mb-4">
-                                <h3 class="text-2xl font-bold text-gray-800">西华师范大学</h3>
-                                <span class="bg-primary/10 text-primary px-4 py-2 rounded-full font-semibold">2022-2026</span>
-                            </div>
-                            <p class="text-xl text-gray-600 mb-4">软件工程 | 本科</p>
-                            
-                            <div class="mb-6">
-                                <h4 class="font-semibold text-gray-700 mb-3">主修课程及成绩：</h4>
-                                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
-                                    <div class="bg-gray-50 p-3 rounded-lg">
-                                        <span class="font-medium">数据结构：</span>92分
+
+                            <div class="relative z-10">
+                                <div class="flex flex-col lg:flex-row lg:items-start lg:space-x-8">
+                                    <!-- 学校图标和基本信息 -->
+                                    <div class="flex-shrink-0 mb-6 lg:mb-0">
+                                        <div
+                                            class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg tilt-3d">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
                                     </div>
-                                    <div class="bg-gray-50 p-3 rounded-lg">
-                                        <span class="font-medium">数据库系统原理：</span>90分
+
+                                    <!-- 详细信息 -->
+                                    <div class="flex-1">
+                                        <!-- 学校名称和时间 -->
+                                        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-6">
+                                            <div>
+                                                <h3 class="text-2xl lg:text-3xl font-bold mb-2"
+                                                    style="color: var(--text-primary)">
+                                                    西华师范大学
+                                                </h3>
+                                                <p class="text-xl mb-2" style="color: var(--text-secondary)">
+                                                    软件工程 | 本科
+                                                </p>
+                                                <div class="flex items-center text-sm"
+                                                    style="color: var(--text-tertiary)">
+                                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                                    四川省南充市
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 lg:mt-0">
+                                                <span class="glass px-4 py-2 rounded-full font-semibold text-sm"
+                                                    style="color: var(--accent-primary)">
+                                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                                    2022-2026
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!-- 主修课程 -->
+                                        <div class="mb-8">
+                                            <h4 class="text-lg font-bold mb-4 flex items-center"
+                                                style="color: var(--text-primary)">
+                                                <i class="fas fa-book mr-3 text-blue-500"></i>
+                                                主修课程及成绩
+                                            </h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                                <div class="glass-hover p-4 rounded-lg">
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="font-medium text-sm"
+                                                            style="color: var(--text-primary)">数据结构</span>
+                                                        <span class="font-bold text-lg"
+                                                            style="color: var(--accent-success)">92分</span>
+                                                    </div>
+                                                    <div class="w-full h-1 bg-gray-200 rounded-full mt-2">
+                                                        <div class="h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+                                                            style="width: 92%"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="glass-hover p-4 rounded-lg">
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="font-medium text-sm"
+                                                            style="color: var(--text-primary)">数据库系统原理</span>
+                                                        <span class="font-bold text-lg"
+                                                            style="color: var(--accent-success)">90分</span>
+                                                    </div>
+                                                    <div class="w-full h-1 bg-gray-200 rounded-full mt-2">
+                                                        <div class="h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+                                                            style="width: 90%"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="glass-hover p-4 rounded-lg">
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="font-medium text-sm"
+                                                            style="color: var(--text-primary)">算法思维</span>
+                                                        <span class="font-bold text-lg"
+                                                            style="color: var(--accent-success)">92分</span>
+                                                    </div>
+                                                    <div class="w-full h-1 bg-gray-200 rounded-full mt-2">
+                                                        <div class="h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+                                                            style="width: 92%"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="glass-hover p-4 rounded-lg">
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="font-medium text-sm"
+                                                            style="color: var(--text-primary)">Web前端设计</span>
+                                                        <span class="font-bold text-lg"
+                                                            style="color: var(--accent-success)">92分</span>
+                                                    </div>
+                                                    <div class="w-full h-1 bg-gray-200 rounded-full mt-2">
+                                                        <div class="h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+                                                            style="width: 92%"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="glass-hover p-4 rounded-lg">
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="font-medium text-sm"
+                                                            style="color: var(--text-primary)">计算机网络原理</span>
+                                                        <span class="font-bold text-lg"
+                                                            style="color: var(--accent-success)">90分</span>
+                                                    </div>
+                                                    <div class="w-full h-1 bg-gray-200 rounded-full mt-2">
+                                                        <div class="h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+                                                            style="width: 90%"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="glass-hover p-4 rounded-lg">
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="font-medium text-sm"
+                                                            style="color: var(--text-primary)">计算机操作系统</span>
+                                                        <span class="font-bold text-lg"
+                                                            style="color: var(--accent-success)">90分</span>
+                                                    </div>
+                                                    <div class="w-full h-1 bg-gray-200 rounded-full mt-2">
+                                                        <div class="h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+                                                            style="width: 90%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 获奖经历 -->
+                                        <div>
+                                            <h4 class="text-lg font-bold mb-4 flex items-center"
+                                                style="color: var(--text-primary)">
+                                                <i class="fas fa-trophy mr-3 text-yellow-500"></i>
+                                                获奖经历与证书
+                                            </h4>
+                                            <div class="flex flex-wrap gap-3">
+                                                <span
+                                                    class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                                    style="color: var(--accent-primary)">
+                                                    <i class="fas fa-language mr-2"></i>CET-4
+                                                </span>
+                                                <span
+                                                    class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                                    style="color: var(--accent-warning)">
+                                                    <i class="fas fa-medal mr-2"></i>计算设计大赛省三等奖
+                                                </span>
+                                                <span
+                                                    class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                                    style="color: var(--accent-warning)">
+                                                    <i class="fas fa-medal mr-2"></i>移动创新赛省三等奖
+                                                </span>
+                                                <span
+                                                    class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                                    style="color: var(--accent-success)">
+                                                    <i class="fas fa-award mr-2"></i>校奖学金(5次)
+                                                </span>
+                                                <span
+                                                    class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                                    style="color: var(--accent-success)">
+                                                    <i class="fas fa-star mr-2"></i>三好学生
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="bg-gray-50 p-3 rounded-lg">
-                                        <span class="font-medium">程序中的算法思维：</span>92分
-                                    </div>
-                                    <div class="bg-gray-50 p-3 rounded-lg">
-                                        <span class="font-medium">Web前端设计：</span>92分
-                                    </div>
-                                    <div class="bg-gray-50 p-3 rounded-lg">
-                                        <span class="font-medium">计算机网络原理：</span>90分
-                                    </div>
-                                    <div class="bg-gray-50 p-3 rounded-lg">
-                                        <span class="font-medium">计算机操作系统：</span>90分
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-3">获奖经历与证书：</h4>
-                                <div class="flex flex-wrap gap-3">
-                                    <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">CET-4</span>
-                                    <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">计算设计大赛省三等奖</span>
-                                    <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">移动创新赛省三等奖</span>
-                                    <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">校奖学金(5次)</span>
-                                    <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">三好学生</span>
                                 </div>
                             </div>
                         </div>
@@ -331,122 +721,260 @@
     </section>
 
     <!-- 项目经历 -->
-    <section id="projects" class="py-20 bg-white">
+    <section id="projects" class="py-20" style="background: var(--bg-primary)">
         <div class="container mx-auto px-6">
+            <!-- 标题区域 -->
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">项目经历</h2>
-                <p class="text-xl text-gray-600">实战项目经验，展现技术能力</p>
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6" style="color: var(--text-primary)">
+                    项目经历
+                    <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-600 mx-auto mt-4 rounded-full"></div>
+                </h2>
+                <p class="text-xl leading-relaxed" style="color: var(--text-secondary)">
+                    实战项目经验，展现技术能力
+                </p>
             </div>
-            
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- 项目1 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover slide-in-left">
-                    <div class="h-48 bg-gradient-to-r from-green-400 to-emerald-600 relative">
-                        <img src="https://doc.doubao.com/s/AOIHzIInRzM/" alt="宠爱家微信小程序" class="w-full h-full object-cover opacity-80">
-                        <div class="absolute inset-0 bg-black/20"></div>
-                        <div class="absolute bottom-4 left-4 text-white">
-                            <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm">全栈开发</span>
+
+            <!-- 项目网格 -->
+            <div class="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+                <!-- 项目1: 宠爱家微信小程序 -->
+                <div class="card overflow-hidden slide-in-left tilt-3d">
+                    <!-- 项目头图 -->
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r to-emerald-600"></div>
+                        <img src="/static/images/img1.png" alt="宠爱家微信小程序"
+                            class="w-full h-full object-cover opacity-80 hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0"></div>
+
+                        <!-- 项目标签 -->
+                        <div class="absolute top-4 left-4">
+                            <span class="glass px-3 py-1 rounded-full text-sm font-medium text-white"
+                                style="color: var(--text-secondary)">
+                                <i class="fas fa-mobile-alt mr-2"></i>全栈开发
+                            </span>
+                        </div>
+
+                        <!-- 技术栈标签 -->
+                        <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                            <span class="glass px-2 py-1 rounded text-xs text-white"
+                                style="color: var(--text-secondary)">微信小程序</span>
+                            <span class="glass px-2 py-1 rounded text-xs text-white"
+                                style="color: var(--text-secondary)">云开发</span>
+                            <span class="glass px-2 py-1 rounded text-xs text-white"
+                                style="color: var(--text-secondary)">JavaScript</span>
                         </div>
                     </div>
+
+                    <!-- 项目内容 -->
                     <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">宠爱家微信小程序</h3>
-                        <p class="text-gray-600 mb-4">2025.02-2025.06</p>
-                        
+                        <!-- 项目标题和时间 -->
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold" style="color: var(--text-primary)">宠爱家微信小程序</h3>
+                            <span class="glass px-3 py-1 rounded-full text-sm font-medium"
+                                style="color: var(--accent-primary)">
+                                <i class="fas fa-calendar-alt mr-1"></i>2025.02-2025.06
+                            </span>
+                        </div>
+
+                        <!-- 项目描述 -->
+                        <p class="mb-6 leading-relaxed" style="color: var(--text-secondary)">
+                            协作开发的宠物综合服务平台，集成待办管理、商城购物、社区交流等功能模块，
+                            采用微信云开发技术栈，为宠物爱好者提供一站式服务体验。
+                        </p>
+
+                        <!-- 核心功能 -->
                         <div class="mb-6">
-                            <h4 class="font-semibold text-gray-700 mb-3">技术栈与核心功能：</h4>
-                            <ul class="space-y-2 text-gray-600">
+                            <h4 class="text-lg font-bold mb-3 flex items-center" style="color: var(--text-primary)">
+                                <i class="fas fa-cogs mr-2 text-green-500"></i>
+                                核心功能模块
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <i class="fas fa-tasks mb-2 text-blue-500"></i>
+                                    <div class="text-sm font-medium" style="color: var(--text-primary)">今日待办</div>
+                                </div>
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <i class="fas fa-store mb-2 text-purple-500"></i>
+                                    <div class="text-sm font-medium" style="color: var(--text-primary)">宠物商场</div>
+                                </div>
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <i class="fas fa-users mb-2 text-cyan-500"></i>
+                                    <div class="text-sm font-medium" style="color: var(--text-primary)">社区交流</div>
+                                </div>
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <i class="fas fa-heart mb-2 text-red-500"></i>
+                                    <div class="text-sm font-medium" style="color: var(--text-primary)">健康管理</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 技术亮点 -->
+                        <div class="mb-6">
+                            <h4 class="text-lg font-bold mb-3 flex items-center" style="color: var(--text-primary)">
+                                <i class="fas fa-lightbulb mr-2 text-yellow-500"></i>
+                                技术亮点
+                            </h4>
+                            <ul class="space-y-2">
                                 <li class="flex items-start">
-                                    <i class="fa fa-check-circle text-accent mr-2 mt-1"></i>
-                                    协作开发微信原生小程序，技术栈覆盖wxml、wxss、js、小程序原生框架(Vanilla)及微信云开发
+                                    <i class="fas fa-check-circle mr-2 mt-1" style="color: var(--accent-success)"></i>
+                                    <span class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                                        深度应用微信云开发，云数据库+云函数架构
+                                    </span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fa fa-check-circle text-accent mr-2 mt-1"></i>
-                                    完成今日待办、商场、社区、用户、宠物、健康六大核心功能模块
+                                    <i class="fas fa-check-circle mr-2 mt-1" style="color: var(--accent-success)"></i>
+                                    <span class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                                        Flex布局实现多机型适配，显示一致性达98%
+                                    </span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fa fa-check-circle text-accent mr-2 mt-1"></i>
-                                    采用flex布局构建高性能适配页面，保障多机型显示一致性
+                                    <i class="fas fa-check-circle mr-2 mt-1" style="color: var(--accent-success)"></i>
+                                    <span class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                                        组件化开发模式，代码复用率提升40%
+                                    </span>
                                 </li>
                             </ul>
                         </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-semibold text-gray-700 mb-3">云开发技术落地：</h4>
-                            <p class="text-gray-600">
-                                深度应用微信云开发，借助云数据库存储业务数据、云函数处理核心逻辑，
-                                简化软件开发流程、优化代码实现逻辑，减少对传统服务器的依赖。
-                            </p>
-                        </div>
-                        
+
+                        <!-- 项目成果 -->
                         <div>
-                            <h4 class="font-semibold text-gray-700 mb-3">项目成果：</h4>
+                            <h4 class="text-lg font-bold mb-3 flex items-center" style="color: var(--text-primary)">
+                                <i class="fas fa-trophy mr-2 text-yellow-500"></i>
+                                项目成果
+                            </h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">移动创新赛西南赛区三等奖</span>
-                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">计算机设计大赛省三等奖</span>
-                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">校一等奖</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs font-medium hover-glow"
+                                    style="color: var(--accent-warning)">
+                                    <i class="fas fa-medal mr-1"></i>移动创新赛西南赛区三等奖
+                                </span>
+                                <span class="glass px-3 py-1 rounded-full text-xs font-medium hover-glow"
+                                    style="color: var(--accent-warning)">
+                                    <i class="fas fa-medal mr-1"></i>计算机设计大赛省三等奖
+                                </span>
+                                <span class="glass px-3 py-1 rounded-full text-xs font-medium hover-glow"
+                                    style="color: var(--accent-warning)">
+                                    <i class="fas fa-award mr-1"></i>校一等奖
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 项目2 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover slide-in-right">
-                    <div class="h-48 bg-gradient-to-r from-blue-400 to-cyan-600 relative">
-                        <img src="https://doc.doubao.com/s/BR7Agz-Px8w/" alt="好好选房经纪人" class="w-full h-full object-cover opacity-80">
-                        <div class="absolute inset-0 bg-black/20"></div>
-                        <div class="absolute bottom-4 left-4 text-white">
-                            <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm">前端开发</span>
+
+                <!-- 项目2: 好好选房经纪人 -->
+                <div class="card overflow-hidden slide-in-right tilt-3d">
+                    <!-- 项目头图 -->
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r to-cyan-600"></div>
+                        <img src="/static/images/img2.png" alt="好好选房经纪人"
+                            class="w-full h-full object-cover opacity-80 hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0"></div>
+
+                        <!-- 项目标签 -->
+                        <div class="absolute top-4 left-4">
+                            <span class="glass px-3 py-1 rounded-full text-sm font-medium text-white"
+                                style="color: var(--text-secondary)">
+                                <i class="fas fa-code mr-2"></i>前端开发
+                            </span>
+                        </div>
+
+                        <!-- 技术栈标签 -->
+                        <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                            <span class="glass px-2 py-1 rounded text-xs text-white"
+                                style="color: var(--text-secondary)">Uni-app</span>
+                            <span class="glass px-2 py-1 rounded text-xs text-white"
+                                style="color: var(--text-secondary)">Vue3</span>
+                            <span class="glass px-2 py-1 rounded text-xs text-white"
+                                style="color: var(--text-secondary)">Pinia</span>
                         </div>
                     </div>
+
+                    <!-- 项目内容 -->
                     <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">好好选房经纪人</h3>
-                        <p class="text-gray-600 mb-4">2025.07-2025.10</p>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-semibold text-gray-700 mb-3">技术选型与核心模块：</h4>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <i class="fa fa-check-circle text-primary mr-2 mt-1"></i>
-                                    技术选型：Uniapp + Vue3 + uv-ui + pinia
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa fa-check-circle text-primary mr-2 mt-1"></i>
-                                    独立完成客源管理/房源管理/主页等核心模块
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa fa-check-circle text-primary mr-2 mt-1"></i>
-                                    封装客源卡片/房源卡片/筛选弹窗等复用组件，减少30%重复代码
-                                </li>
-                            </ul>
+                        <!-- 项目标题和时间 -->
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold" style="color: var(--text-primary)">好好选房经纪人</h3>
+                            <span class="glass px-3 py-1 rounded-full text-sm font-medium"
+                                style="color: var(--accent-primary)">
+                                <i class="fas fa-calendar-alt mr-1"></i>2025.07-2025.10
+                            </span>
                         </div>
-                        
+
+                        <!-- 项目描述 -->
+                        <p class="mb-6 leading-relaxed" style="color: var(--text-secondary)">
+                            面向B端房产经纪人的移动端管理平台，提供客源管理、房源管理、数据统计等核心功能，
+                            采用Uni-app跨平台开发，服务100+经纪人用户。
+                        </p>
+
+                        <!-- 核心模块 -->
                         <div class="mb-6">
-                            <h4 class="font-semibold text-gray-700 mb-3">性能优化落地：</h4>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <i class="fa fa-rocket text-primary mr-2 mt-1"></i>
-                                    将主包大小从2.3M优化至1.3M
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa fa-rocket text-primary mr-2 mt-1"></i>
-                                    页面首屏加载时间从2.8s缩短至1.5s，性能提效46%
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa fa-rocket text-primary mr-2 mt-1"></i>
-                                    修复Android按钮错位、iPhone X安全区遮挡等适配问题
-                                </li>
-                            </ul>
+                            <h4 class="text-lg font-bold mb-3 flex items-center" style="color: var(--text-primary)">
+                                <i class="fas fa-th-large mr-2 text-blue-500"></i>
+                                核心业务模块
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <i class="fas fa-user-friends mb-2 text-green-500"></i>
+                                    <div class="text-sm font-medium" style="color: var(--text-primary)">客源管理</div>
+                                </div>
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <i class="fas fa-home mb-2 text-blue-500"></i>
+                                    <div class="text-sm font-medium" style="color: var(--text-primary)">房源管理</div>
+                                </div>
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <i class="fas fa-chart-bar mb-2 text-purple-500"></i>
+                                    <div class="text-sm font-medium" style="color: var(--text-primary)">数据统计</div>
+                                </div>
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <i class="fas fa-cog mb-2 text-orange-500"></i>
+                                    <div class="text-sm font-medium" style="color: var(--text-primary)">系统设置</div>
+                                </div>
+                            </div>
                         </div>
-                        
+
+                        <!-- 性能优化 -->
+                        <div class="mb-6">
+                            <h4 class="text-lg font-bold mb-3 flex items-center" style="color: var(--text-primary)">
+                                <i class="fas fa-rocket mr-2 text-red-500"></i>
+                                性能优化成果
+                            </h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <div class="text-2xl font-bold mb-1" style="color: var(--accent-success)">43%</div>
+                                    <div class="text-xs" style="color: var(--text-secondary)">主包体积减少</div>
+                                </div>
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <div class="text-2xl font-bold mb-1" style="color: var(--accent-success)">46%</div>
+                                    <div class="text-xs" style="color: var(--text-secondary)">加载时间提升</div>
+                                </div>
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <div class="text-2xl font-bold mb-1" style="color: var(--accent-success)">80%</div>
+                                    <div class="text-xs" style="color: var(--text-secondary)">组件复用率</div>
+                                </div>
+                                <div class="glass-hover p-3 rounded-lg text-center">
+                                    <div class="text-2xl font-bold mb-1" style="color: var(--accent-success)">20%</div>
+                                    <div class="text-xs" style="color: var(--text-secondary)">故障率降低</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 项目影响 -->
                         <div>
-                            <h4 class="font-semibold text-gray-700 mb-3">项目成果：</h4>
-                            <p class="text-gray-600 mb-3">
-                                面向B端的小程序，为超100+客户提供服务，得到用户广泛好评，
-                                为公司开展经纪人入驻业务开拓市场。
-                            </p>
+                            <h4 class="text-lg font-bold mb-3 flex items-center" style="color: var(--text-primary)">
+                                <i class="fas fa-chart-line mr-2 text-green-500"></i>
+                                项目影响
+                            </h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">用户故障率降低20%</span>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">组件复用率达80%</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs font-medium hover-glow"
+                                    style="color: var(--accent-primary)">
+                                    <i class="fas fa-users mr-1"></i>服务100+经纪人
+                                </span>
+                                <span class="glass px-3 py-1 rounded-full text-xs font-medium hover-glow"
+                                    style="color: var(--accent-primary)">
+                                    <i class="fas fa-star mr-1"></i>用户好评率95%+
+                                </span>
+                                <span class="glass px-3 py-1 rounded-full text-xs font-medium hover-glow"
+                                    style="color: var(--accent-primary)">
+                                    <i class="fas fa-business-time mr-1"></i>助力业务拓展
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -456,61 +984,262 @@
     </section>
 
     <!-- 实习经历 -->
-    <section id="experience" class="py-20 bg-gray-50">
+    <section id="experience" class="py-20" style="background: var(--bg-secondary)">
         <div class="container mx-auto px-6">
+            <!-- 标题区域 -->
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">实习经历</h2>
-                <p class="text-xl text-gray-600">企业实战经验，提升专业技能</p>
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6" style="color: var(--text-primary)">
+                    实习经历
+                    <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-4 rounded-full"></div>
+                </h2>
+                <p class="text-xl leading-relaxed" style="color: var(--text-secondary)">
+                    企业实战经验，提升专业技能
+                </p>
             </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover slide-in-left">
-                    <div class="flex items-start space-x-6">
-                        <div class="flex-shrink-0">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white text-2xl">
-                                <i class="fa fa-briefcase"></i>
+
+            <!-- 实习经历卡片 -->
+            <div class="max-w-6xl mx-auto">
+                <div class="card slide-in-left relative overflow-hidden">
+                    <!-- 背景装饰 -->
+                    <div
+                        class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full -translate-y-10 translate-x-10">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-500/10 to-pink-500/10 rounded-full translate-y-8 -translate-x-8">
+                    </div>
+
+                    <div class="relative z-10">
+                        <div class="flex flex-col lg:flex-row lg:items-start lg:space-x-8">
+                            <!-- 公司信息 -->
+                            <div class="flex-shrink-0 mb-8 lg:mb-0">
+                                <div class="text-center lg:text-left">
+                                    <!-- 公司Logo -->
+                                    <div
+                                        class="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl mx-auto lg:mx-0 mb-4 flex items-center justify-center text-white text-3xl shadow-xl tilt-3d">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+
+                                    <!-- 公司基本信息 -->
+                                    <div class="glass-hover p-4 rounded-lg">
+                                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary)">
+                                            成都左膀右臂科技有限公司
+                                        </h3>
+                                        <p class="text-lg font-semibold mb-2" style="color: var(--accent-primary)">
+                                            前端实习生
+                                        </p>
+                                        <div class="flex items-center justify-center lg:justify-start mb-2">
+                                            <span class="glass px-3 py-1 rounded-full text-sm font-medium"
+                                                style="color: var(--accent-primary)">
+                                                <i class="fas fa-calendar-alt mr-2"></i>2025.07-2025.10
+                                            </span>
+                                        </div>
+                                        <div class="flex items-center justify-center lg:justify-start text-sm"
+                                            style="color: var(--text-tertiary)">
+                                            <i class="fas fa-map-marker-alt mr-2"></i>
+                                            成都市高新区
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex flex-wrap justify-between items-start mb-4">
-                                <h3 class="text-2xl font-bold text-gray-800">成都左膀右臂科技有限公司</h3>
-                                <span class="bg-primary/10 text-primary px-4 py-2 rounded-full font-semibold">2025.07-2025.10</span>
-                            </div>
-                            <p class="text-xl text-gray-600 mb-6">前端实习生</p>
-                            
-                            <div class="space-y-6">
+
+                            <!-- 工作内容详情 -->
+                            <div class="flex-1 space-y-8">
+                                <!-- 工作职责概述 -->
                                 <div>
-                                    <h4 class="font-semibold text-gray-700 mb-3 flex items-center">
-                                        <i class="fa fa-code text-primary mr-2"></i>
-                                        业务开发
+                                    <h4 class="text-2xl font-bold mb-4 flex items-center"
+                                        style="color: var(--text-primary)">
+                                        <i class="fas fa-user-tie mr-3 text-blue-500"></i>
+                                        工作职责
                                     </h4>
-                                    <p class="text-gray-600 leading-relaxed">
-                                        参与好好选房经纪人小程序开发，使用墨刀+即使设计构建产品demo，与公司业务部门深度合作，
-                                        以经纪人用户为核心，参与需求调研，技术选型，小组讨论，确定项目，
-                                        针对用户提出的建议与问题进行优化修改反馈。
+                                    <p class="text-lg leading-relaxed mb-6" style="color: var(--text-secondary)">
+                                        作为前端实习生，深度参与好好选房经纪人小程序的开发工作，
+                                        从需求分析到技术实现，全程参与产品开发生命周期，
+                                        与跨部门团队协作，确保项目高质量按期交付。
                                     </p>
                                 </div>
-                                
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-3 flex items-center">
-                                        <i class="fa fa-users text-primary mr-2"></i>
-                                        团队协作
-                                    </h4>
-                                    <p class="text-gray-600 leading-relaxed">
-                                        参与每周部门周会，对齐业务需求，与后端明确接口字段，确定项目需求，
-                                        使用Git协作，联调房源接口解决数据适配问题、修复多个小程序端Bug，确保项目按期上线。
-                                    </p>
+
+                                <!-- 具体工作内容 -->
+                                <div class="grid md:grid-cols-3 gap-6">
+                                    <!-- 业务开发 -->
+                                    <div class="card">
+                                        <div class="text-center mb-4">
+                                            <div
+                                                class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-full mx-auto flex items-center justify-center text-white text-2xl mb-3">
+                                                <i class="fas fa-code"></i>
+                                            </div>
+                                            <h5 class="text-lg font-bold" style="color: var(--text-primary)">业务开发</h5>
+                                        </div>
+                                        <ul class="space-y-2 text-sm" style="color: var(--text-secondary)">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                参与需求调研与技术选型
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                使用墨刀构建产品原型
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                负责5个核心页面开发
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                页面还原度达95%+
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- 团队协作 -->
+                                    <div class="card">
+                                        <div class="text-center mb-4">
+                                            <div
+                                                class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full mx-auto flex items-center justify-center text-white text-2xl mb-3">
+                                                <i class="fas fa-users"></i>
+                                            </div>
+                                            <h5 class="text-lg font-bold" style="color: var(--text-primary)">团队协作</h5>
+                                        </div>
+                                        <ul class="space-y-2 text-sm" style="color: var(--text-secondary)">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                参与每周部门周会
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                与后端对接API接口
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                使用Git进行版本控制
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                修复多端适配问题
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- 技术成果 -->
+                                    <div class="card">
+                                        <div class="text-center mb-4">
+                                            <div
+                                                class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-full mx-auto flex items-center justify-center text-white text-2xl mb-3">
+                                                <i class="fas fa-cogs"></i>
+                                            </div>
+                                            <h5 class="text-lg font-bold" style="color: var(--text-primary)">技术成果</h5>
+                                        </div>
+                                        <ul class="space-y-2 text-sm" style="color: var(--text-secondary)">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                封装16个复用组件
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                减少30%冗余代码
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                组件复用率达80%
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle mr-2 mt-1"
+                                                    style="color: var(--accent-success)"></i>
+                                                确保项目按期上线
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                
+
+                                <!-- 技术栈和工具 -->
                                 <div>
-                                    <h4 class="font-semibold text-gray-700 mb-3 flex items-center">
-                                        <i class="fa fa-cogs text-primary mr-2"></i>
-                                        技术落地
+                                    <h4 class="text-xl font-bold mb-4 flex items-center"
+                                        style="color: var(--text-primary)">
+                                        <i class="fas fa-tools mr-3 text-purple-500"></i>
+                                        技术栈与工具
                                     </h4>
-                                    <p class="text-gray-600 leading-relaxed">
-                                        负责5个核心页面构建(uni-app/CSS3/Vue3)，严格根据设计稿完成项目，页面还原度95%+，
-                                        基于Vue3封装16个复用组件(如房源卡片、筛选组件、表单组件)，减少30%冗余代码，组件复用率达80%。
-                                    </p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                            style="color: var(--text-primary)">
+                                            <i class="fab fa-vuejs mr-2 text-green-500"></i>Vue3
+                                        </span>
+                                        <span class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                            style="color: var(--text-primary)">
+                                            <i class="fas fa-mobile-alt mr-2 text-blue-500"></i>Uni-app
+                                        </span>
+                                        <span class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                            style="color: var(--text-primary)">
+                                            <i class="fab fa-css3-alt mr-2 text-blue-600"></i>CSS3
+                                        </span>
+                                        <span class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                            style="color: var(--text-primary)">
+                                            <i class="fab fa-git-alt mr-2 text-red-500"></i>Git
+                                        </span>
+                                        <span class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                            style="color: var(--text-primary)">
+                                            <i class="fas fa-cube mr-2 text-purple-500"></i>Pinia
+                                        </span>
+                                        <span class="glass px-4 py-2 rounded-full text-sm font-medium hover-glow"
+                                            style="color: var(--text-primary)">
+                                            <i class="fas fa-paint-brush mr-2 text-orange-500"></i>墨刀
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- 实习收获 -->
+                                <div>
+                                    <h4 class="text-xl font-bold mb-4 flex items-center"
+                                        style="color: var(--text-primary)">
+                                        <i class="fas fa-lightbulb mr-3 text-yellow-500"></i>
+                                        实习收获
+                                    </h4>
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <div class="glass-hover p-4 rounded-lg">
+                                            <h6 class="font-bold mb-2" style="color: var(--text-primary)">
+                                                <i class="fas fa-chart-line mr-2 text-green-500"></i>技术能力提升
+                                            </h6>
+                                            <p class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                                                深入掌握Vue3生态系统，熟练使用Uni-app进行跨平台开发，
+                                                组件封装和性能优化能力显著提升。
+                                            </p>
+                                        </div>
+                                        <div class="glass-hover p-4 rounded-lg">
+                                            <h6 class="font-bold mb-2" style="color: var(--text-primary)">
+                                                <i class="fas fa-handshake mr-2 text-blue-500"></i>协作经验积累
+                                            </h6>
+                                            <p class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                                                学会与产品、设计、后端等多角色协作，
+                                                提升了项目管理和沟通协调能力。
+                                            </p>
+                                        </div>
+                                        <div class="glass-hover p-4 rounded-lg">
+                                            <h6 class="font-bold mb-2" style="color: var(--text-primary)">
+                                                <i class="fas fa-eye mr-2 text-purple-500"></i>产品思维培养
+                                            </h6>
+                                            <p class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                                                从用户角度思考产品设计，注重用户体验，
+                                                具备了产品思维和用户导向意识。
+                                            </p>
+                                        </div>
+                                        <div class="glass-hover p-4 rounded-lg">
+                                            <h6 class="font-bold mb-2" style="color: var(--text-primary)">
+                                                <i class="fas fa-rocket mr-2 text-red-500"></i>工程化实践
+                                            </h6>
+                                            <p class="text-sm leading-relaxed" style="color: var(--text-secondary)">
+                                                掌握了前端工程化开发流程，代码规范，
+                                                性能优化等企业级开发最佳实践。
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -521,103 +1250,244 @@
     </section>
 
     <!-- 联系信息 -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">联系我</h2>
-                <p class="text-xl text-gray-600">期待与您的合作</p>
+    <section id="contact" class="py-20 relative overflow-hidden" style="background: var(--bg-primary)">
+        <!-- 波浪背景装饰 -->
+        <div class="absolute inset-0">
+            <svg class="absolute bottom-0 w-full h-32" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                    opacity=".25" fill="url(#wave-gradient-1)"></path>
+                <path
+                    d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+                    opacity=".5" fill="url(#wave-gradient-2)"></path>
+                <path
+                    d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+                    fill="url(#wave-gradient-3)"></path>
+                <defs>
+                    <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:var(--accent-primary);stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:var(--accent-tertiary);stop-opacity:0.3" />
+                    </linearGradient>
+                    <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:var(--accent-secondary);stop-opacity:0.4" />
+                        <stop offset="100%" style="stop-color:var(--accent-primary);stop-opacity:0.4" />
+                    </linearGradient>
+                    <linearGradient id="wave-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:var(--accent-tertiary);stop-opacity:0.5" />
+                        <stop offset="100%" style="stop-color:var(--accent-secondary);stop-opacity:0.5" />
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <!-- 浮动装饰元素 -->
+            <div
+                class="absolute top-20 left-10 w-24 h-24 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-xl animate-pulse floating">
             </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div class="absolute top-40 right-20 w-32 h-32 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse floating"
+                style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-32 left-1/4 w-20 h-20 bg-gradient-to-r from-green-400/20 to-teal-400/20 rounded-full blur-lg animate-pulse floating"
+                style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- 标题区域 -->
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6" style="color: var(--text-primary)">
+                    联系我
+                    <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mx-auto mt-4 rounded-full"></div>
+                </h2>
+                <p class="text-xl leading-relaxed" style="color: var(--text-secondary)">
+                    期待与您的合作，共创美好未来
+                </p>
+            </div>
+
+            <!-- 联系信息网格 -->
+            <div class="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+                <!-- 求职意向卡片 -->
                 <div class="slide-in-left">
-                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-6">求职意向</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white">
-                                    <i class="fa fa-briefcase"></i>
+                    <div class="card relative overflow-hidden">
+                        <!-- 背景装饰 -->
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full -translate-y-8 translate-x-8">
+                        </div>
+
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-8 flex items-center" style="color: var(--text-primary)">
+                                <i class="fas fa-bullseye mr-3 text-blue-500"></i>
+                                求职意向
+                            </h3>
+
+                            <div class="space-y-6">
+                                <div class="glass-hover p-4 rounded-lg flex items-center space-x-4">
+                                    <div
+                                        class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white text-xl floating">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-lg" style="color: var(--text-primary)">求职岗位</p>
+                                        <p class="text-lg" style="color: var(--accent-primary)">初级前端工程师</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-gray-700">求职岗位</p>
-                                    <p class="text-gray-600">初级前端工程师</p>
+
+                                <div class="glass-hover p-4 rounded-lg flex items-center space-x-4">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center text-white text-xl floating"
+                                        style="animation-delay: 0.5s;">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-lg" style="color: var(--text-primary)">期望城市</p>
+                                        <p class="text-lg" style="color: var(--accent-primary)">成都</p>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white">
-                                    <i class="fa fa-map-marker"></i>
+
+                                <div class="glass-hover p-4 rounded-lg flex items-center space-x-4">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-xl floating"
+                                        style="animation-delay: 1s;">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-lg" style="color: var(--text-primary)">学历背景</p>
+                                        <p class="text-lg" style="color: var(--accent-primary)">本科在读 (2026年毕业)</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-gray-700">期望城市</p>
-                                    <p class="text-gray-600">成都</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-700">学历背景</p>
-                                    <p class="text-gray-600">本科在读 (2026年毕业)</p>
+
+                                <div class="glass-hover p-4 rounded-lg flex items-center space-x-4">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white text-xl floating"
+                                        style="animation-delay: 1.5s;">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-lg" style="color: var(--text-primary)">工作状态</p>
+                                        <p class="text-lg" style="color: var(--accent-primary)">即将毕业，随时到岗</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- 联系方式卡片 -->
                 <div class="slide-in-right">
-                    <div class="bg-white rounded-2xl shadow-lg p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-6">联系方式</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                    <i class="fa fa-phone"></i>
+                    <div class="card relative overflow-hidden">
+                        <!-- 背景装饰 -->
+                        <div
+                            class="absolute bottom-0 left-0 w-28 h-28 bg-gradient-to-tr from-purple-500/10 to-pink-500/10 rounded-full translate-y-6 -translate-x-6">
+                        </div>
+
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-8 flex items-center" style="color: var(--text-primary)">
+                                <i class="fas fa-address-card mr-3 text-purple-500"></i>
+                                联系方式
+                            </h3>
+
+                            <div class="space-y-6">
+                                <div class="glass-hover p-4 rounded-lg flex items-center space-x-4">
+                                    <div
+                                        class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white text-xl floating">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-bold text-lg" style="color: var(--text-primary)">电话</p>
+                                        <a href="tel:15984273217" class="text-lg hover:underline"
+                                            style="color: var(--accent-primary)">15984273217</a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-gray-700">电话</p>
-                                    <p class="text-gray-600">15984273217</p>
+
+                                <div class="glass-hover p-4 rounded-lg flex items-center space-x-4">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-xl floating"
+                                        style="animation-delay: 0.5s;">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-bold text-lg" style="color: var(--text-primary)">邮箱</p>
+                                        <a href="mailto:2669932873@qq.com" class="text-lg hover:underline"
+                                            style="color: var(--accent-primary)">2669932873@qq.com</a>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                                    <i class="fa fa-envelope"></i>
+
+                                <div class="glass-hover p-4 rounded-lg flex items-center space-x-4">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-violet-500 rounded-full flex items-center justify-center text-white text-xl floating"
+                                        style="animation-delay: 1s;">
+                                        <i class="fas fa-university"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-bold text-lg" style="color: var(--text-primary)">教育背景</p>
+                                        <p class="text-lg" style="color: var(--accent-primary)">西华师范大学 软件工程</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-gray-700">邮箱</p>
-                                    <p class="text-gray-600">2669932873@qq.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-700">教育</p>
-                                    <p class="text-gray-600">西华师范大学 软件工程</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-700">技能亮点</p>
-                                    <p class="text-gray-600">Vue3、Uni-app、响应式设计</p>
+
+                                <div class="glass-hover p-4 rounded-lg flex items-center space-x-4">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center text-white text-xl floating"
+                                        style="animation-delay: 1.5s;">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-bold text-lg" style="color: var(--text-primary)">技能亮点</p>
+                                        <p class="text-lg" style="color: var(--accent-primary)">Vue3、Uni-app、响应式设计</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="mt-8 pt-8 border-t border-gray-200">
-                            <h4 class="font-semibold text-gray-700 mb-4">快速联系</h4>
-                            <a href="mailto:2669932873@qq.com" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-semibold hover:bg-secondary transition-colors mb-4">
-                                <i class="fa fa-envelope mr-2"></i>发送邮件
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 快速联系部分 -->
+    <section class="py-16 relative overflow-hidden" style="background: var(--bg-secondary)">
+        <!-- 背景装饰 -->
+        <div class="absolute inset-0">
+            <div
+                class="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-pulse">
+            </div>
+            <div class="absolute bottom-10 right-10 w-24 h-24 bg-gradient-to-r from-cyan-500/10 to-teal-500/10 rounded-full blur-lg animate-pulse"
+                style="animation-delay: 1s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <div class="card text-center">
+                    <h3 class="text-3xl font-bold mb-6" style="color: var(--text-primary)">
+                        <i class="fas fa-rocket mr-3 text-cyan-500"></i>
+                        快速联系
+                    </h3>
+                    <p class="text-lg mb-8 leading-relaxed" style="color: var(--text-secondary)">
+                        有项目合作意向或想了解更多信息？欢迎随时联系我
+                    </p>
+
+                    <!-- 联系按钮 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <a href="mailto:2669932873@qq.com" class="btn btn-primary hover-glow text-center">
+                            <i class="fas fa-envelope mr-2"></i>发送邮件
+                        </a>
+                        <a href="tel:15984273217" class="btn btn-secondary hover-glow text-center">
+                            <i class="fas fa-phone mr-2"></i>拨打电话
+                        </a>
+                    </div>
+
+                    <!-- 社交媒体链接 -->
+                    <div>
+                        <p class="text-sm mb-6" style="color: var(--text-secondary)">或通过社交媒体联系我</p>
+                        <div class="flex justify-center space-x-6">
+                            <a href="#"
+                                class="w-14 h-14 glass-hover rounded-full flex items-center justify-center hover-glow floating">
+                                <i class="fab fa-github text-xl" style="color: var(--text-primary)"></i>
                             </a>
-                            <a href="tel:15984273217" class="block w-full border-2 border-primary text-primary text-center py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors">
-                                <i class="fa fa-phone mr-2"></i>拨打电话
+                            <a href="#"
+                                class="w-14 h-14 glass-hover rounded-full flex items-center justify-center hover-glow floating"
+                                style="animation-delay: 0.3s;">
+                                <i class="fab fa-weixin text-xl" style="color: var(--text-primary)"></i>
+                            </a>
+                            <a href="#"
+                                class="w-14 h-14 glass-hover rounded-full flex items-center justify-center hover-glow floating"
+                                style="animation-delay: 0.6s;">
+                                <i class="fab fa-linkedin text-xl" style="color: var(--text-primary)"></i>
+                            </a>
+                            <a href="#"
+                                class="w-14 h-14 glass-hover rounded-full flex items-center justify-center hover-glow floating"
+                                style="animation-delay: 0.9s;">
+                                <i class="fab fa-qq text-xl" style="color: var(--text-primary)"></i>
                             </a>
                         </div>
                     </div>
@@ -627,151 +1497,115 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="text-center">
-                <div class="text-3xl font-bold mb-4">
-                    <i class="fa fa-code mr-2 text-primary"></i>侯杰
+    <footer class="relative overflow-hidden py-16"
+        style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%)">
+        <!-- 背景装饰 -->
+        <div class="absolute inset-0">
+            <div
+                class="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-pulse">
+            </div>
+            <div class="absolute bottom-10 right-10 w-24 h-24 bg-gradient-to-r from-cyan-500/10 to-teal-500/10 rounded-full blur-lg animate-pulse"
+                style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-2xl animate-pulse"
+                style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center fade-in">
+                <!-- Logo和标题 -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-center mb-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl shadow-xl tilt-3d">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2" style="color: var(--text-primary)">侯杰</h3>
+                    <p class="text-lg mb-6" style="color: var(--text-secondary)">前端开发工程师 | 追求卓越，持续学习</p>
                 </div>
-                <p class="text-gray-400 mb-6">前端开发工程师 | 追求卓越，持续学习</p>
+
+                <!-- 导航链接 -->
+                <div class="flex flex-wrap justify-center gap-8 mb-8 text-sm">
+                    <a href="#home" class="hover:underline transition-colors"
+                        style="color: var(--text-secondary)">首页</a>
+                    <a href="#skills" class="hover:underline transition-colors"
+                        style="color: var(--text-secondary)">技能</a>
+                    <a href="#education" class="hover:underline transition-colors"
+                        style="color: var(--text-secondary)">教育</a>
+                    <a href="#projects" class="hover:underline transition-colors"
+                        style="color: var(--text-secondary)">项目</a>
+                    <a href="#experience" class="hover:underline transition-colors"
+                        style="color: var(--text-secondary)">经历</a>
+                    <a href="#contact" class="hover:underline transition-colors"
+                        style="color: var(--text-secondary)">联系</a>
+                </div>
+
+                <!-- 社交媒体链接 -->
                 <div class="flex justify-center space-x-6 mb-8">
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors text-xl">
-                        <i class="fa fa-github"></i>
+                    <a href="#"
+                        class="w-12 h-12 glass-hover rounded-full flex items-center justify-center hover-glow floating transition-all duration-300">
+                        <i class="fab fa-github text-xl" style="color: var(--text-primary)"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors text-xl">
-                        <i class="fa fa-weixin"></i>
+                    <a href="#"
+                        class="w-12 h-12 glass-hover rounded-full flex items-center justify-center hover-glow floating transition-all duration-300"
+                        style="animation-delay: 0.3s;">
+                        <i class="fab fa-weixin text-xl" style="color: var(--text-primary)"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors text-xl">
-                        <i class="fa fa-linkedin"></i>
+                    <a href="#"
+                        class="w-12 h-12 glass-hover rounded-full flex items-center justify-center hover-glow floating transition-all duration-300"
+                        style="animation-delay: 0.6s;">
+                        <i class="fab fa-linkedin text-xl" style="color: var(--text-primary)"></i>
+                    </a>
+                    <a href="#"
+                        class="w-12 h-12 glass-hover rounded-full flex items-center justify-center hover-glow floating transition-all duration-300"
+                        style="animation-delay: 0.9s;">
+                        <i class="fab fa-qq text-xl" style="color: var(--text-primary)"></i>
                     </a>
                 </div>
-                <p class="text-gray-500 text-sm">
-                    © 2025 侯杰. All rights reserved. | 个人介绍网站
-                </p>
+
+                <!-- 联系信息 -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8 text-sm">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope mr-2" style="color: var(--accent-primary)"></i>
+                        <a href="mailto:2669932873@qq.com" class="hover:underline"
+                            style="color: var(--text-secondary)">2669932873@qq.com</a>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-phone mr-2" style="color: var(--accent-primary)"></i>
+                        <a href="tel:15984273217" class="hover:underline"
+                            style="color: var(--text-secondary)">15984273217</a>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt mr-2" style="color: var(--accent-primary)"></i>
+                        <span style="color: var(--text-secondary)">成都市</span>
+                    </div>
+                </div>
+
+                <!-- 版权信息 -->
+                <div class="border-t pt-6" style="border-color: var(--border-color)">
+                    <p class="text-sm" style="color: var(--text-tertiary)">
+                        © 2025 侯杰. All rights reserved. |
+                        <span class="mx-2">•</span>
+                        个人简历网站 |
+                        <span class="mx-2">•</span>
+                        Made with ❤️ in Chengdu
+                    </p>
+                    <p class="text-xs mt-2" style="color: var(--text-tertiary)">
+                        最后更新：2025年1月
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- 返回顶部按钮 -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full shadow-lg hover:bg-secondary transition-all duration-300 opacity-0 pointer-events-none">
-        <i class="fa fa-chevron-up"></i>
+    <button id="back-to-top"
+        class="fixed bottom-8 right-8 glass w-14 h-14 rounded-full shadow-xl hover-glow transition-all duration-300 opacity-0 pointer-events-none z-50">
+        <i class="fas fa-chevron-up text-xl" style="color: var(--text-primary)"></i>
     </button>
 
-    <script>
-        // 移动端菜单切换
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // 关闭移动端菜单
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-
-        // 导航栏滚动效果
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('shadow-md');
-                navbar.classList.remove('shadow-sm');
-            } else {
-                navbar.classList.remove('shadow-md');
-                navbar.classList.add('shadow-sm');
-            }
-        });
-
-        // 返回顶部按钮
-        const backToTopBtn = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-                backToTopBtn.classList.add('opacity-100');
-            } else {
-                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
-                backToTopBtn.classList.remove('opacity-100');
-            }
-        });
-        
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // 滚动动画
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // 观察所有需要动画的元素
-        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = el.classList.contains('slide-in-left') ? 'translateX(-30px)' : 
-                                 el.classList.contains('slide-in-right') ? 'translateX(30px)' : 'translateY(20px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(el);
-        });
-
-        // 技能条动画
-        const skillBars = document.querySelectorAll('.skill-bar');
-        const skillsSection = document.getElementById('skills');
-        
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    skillBars.forEach(bar => {
-                        const width = bar.style.width;
-                        bar.style.width = '0';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 100);
-                    });
-                    skillObserver.unobserve(entry.target);
-                }
-            });
-        });
-        
-        skillObserver.observe(skillsSection);
-
-        // 页面加载完成后的初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            // 设置初始状态
-            backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
-            
-            // 延迟显示英雄区域内容
-            setTimeout(() => {
-                document.querySelector('#home .fade-in').style.opacity = '1';
-                document.querySelector('#home .fade-in').style.transform = 'translateY(0)';
-                document.querySelector('#home .slide-in-right').style.opacity = '1';
-                document.querySelector('#home .slide-in-right').style.transform = 'translateX(0)';
-            }, 300);
-        });
-    </script>
+    <!-- 引入主脚本文件 -->
+    <script src="script.js"></script>
 </body>
+
 </html>
