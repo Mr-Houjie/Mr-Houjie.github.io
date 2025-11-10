@@ -40,7 +40,9 @@ class ResumeWebsite {
     
     // 移动端主题切换事件
     if (mobileThemeToggle) {
-      mobileThemeToggle.addEventListener('click', () => {
+      mobileThemeToggle.addEventListener('click', (e) => {
+        // 防止事件冒泡
+        e.stopPropagation();
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         this.setTheme(newTheme);
@@ -177,29 +179,6 @@ class ResumeWebsite {
 
   // 交互效果
   setupInteractions() {
-    // 3D 倾斜效果
-    const tiltElements = document.querySelectorAll('.tilt-3d');
-    
-    tiltElements.forEach(element => {
-      element.addEventListener('mousemove', (e) => {
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-      });
-      
-      element.addEventListener('mouseleave', () => {
-        element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-      });
-    });
-    
     // 卡片悬停效果
     const cards = document.querySelectorAll('.card, .glass-hover');
     cards.forEach(card => {
@@ -209,6 +188,15 @@ class ResumeWebsite {
       
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+    
+    // 小程序链接点击事件 - 自动复制链接
+    const miniProgramLinks = document.querySelectorAll('a[href^="#小程序://"]');
+    miniProgramLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.copyToClipboard(link.href);
       });
     });
   }
@@ -404,16 +392,10 @@ class ResumeWebsite {
         item.style.animationDelay = `${index * 0.05 + 0.1}s`;
       });
       
-      // 主题切换按钮动画
-      const themeToggle = mobileMenu.querySelector('#mobile-theme-toggle');
-      if (themeToggle) {
-        themeToggle.style.animationDelay = `${menuItems.length * 0.05 + 0.15}s`;
-      }
-      
       // 快捷联系按钮动画
       const contactButtons = mobileMenu.querySelectorAll('.grid a');
       contactButtons.forEach((button, index) => {
-        button.style.animationDelay = `${menuItems.length * 0.05 + 0.2 + index * 0.05}s`;
+        button.style.animationDelay = `${menuItems.length * 0.05 + 0.15 + index * 0.05}s`;
       });
     }
   }
@@ -430,7 +412,7 @@ class ResumeWebsite {
       mobileMenuBtn.classList.remove('active');
       
       // 重置所有动画延迟
-      const animatedElements = mobileMenu.querySelectorAll('.mobile-nav-item, #mobile-theme-toggle, .grid a');
+      const animatedElements = mobileMenu.querySelectorAll('.mobile-nav-item, .grid a');
       animatedElements.forEach(element => {
         element.style.animationDelay = '';
       });
@@ -470,6 +452,73 @@ class ResumeWebsite {
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
     };
+  }
+
+  // 复制到剪贴板功能
+  copyToClipboard(text) {
+    // 创建临时textarea元素
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'absolute';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    
+    // 选择并复制文本
+    textarea.select();
+    const success = document.execCommand('copy');
+    document.body.removeChild(textarea);
+    
+    // 显示反馈消息
+    this.showCopyFeedback(success);
+    
+    return success;
+  }
+
+  // 显示复制反馈消息
+  showCopyFeedback(success) {
+    // 如果已经存在反馈元素，先移除它
+    const existingFeedback = document.getElementById('copy-feedback');
+    if (existingFeedback) {
+      existingFeedback.remove();
+    }
+    
+    // 创建反馈元素
+    const feedback = document.createElement('div');
+    feedback.id = 'copy-feedback';
+    feedback.textContent = success ? '链接已复制到剪贴板！' : '复制失败，请手动复制链接';
+    feedback.style.cssText = `
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      background: ${success ? 'var(--accent-success)' : 'var(--accent-error)'};
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 10000;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    `;
+    
+    document.body.appendChild(feedback);
+    
+    // 显示反馈
+    setTimeout(() => {
+      feedback.style.opacity = '1';
+    }, 10);
+    
+    // 3秒后隐藏并移除反馈
+    setTimeout(() => {
+      feedback.style.opacity = '0';
+      setTimeout(() => {
+        if (feedback.parentNode) {
+          feedback.parentNode.removeChild(feedback);
+        }
+      }, 300);
+    }, 3000);
   }
 
   // 性能优化：节流函数
