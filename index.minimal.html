@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侯杰 | 软件开发工程师</title>
+    <meta
+        name="description"
+        content="侯杰的个人介绍网页，展示前端与全栈开发能力、项目经验、教育背景与联系方式。"
+    >
+    <meta
+        name="keywords"
+        content="侯杰,软件开发工程师,前端开发,Vue.js,Uni-app,FastAPI,Python,个人介绍,作品集"
+    >
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+    <link rel="stylesheet" href="styles.minimal.css">
+</head>
+<body>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <header class="hero" id="home">
+        <nav class="site-nav" id="navbar">
+            <a class="brand" href="#home" aria-label="返回顶部">
+                <span class="brand-mark">HJ</span>
+                <span class="brand-copy">
+                    <strong>侯杰</strong>
+                    <small>Software Developer</small>
+                </span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="nav-links"
+                aria-label="切换导航菜单"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
+                <a href="#about" class="nav-link">简介</a>
+                <a href="#skills" class="nav-link">技能</a>
+                <a href="#projects" class="nav-link">项目</a>
+                <a href="#experience" class="nav-link">经历</a>
+                <a href="#contact" class="nav-link">联系</a>
+            </div>
+        </nav>
+
+        <div class="hero-content section-shell">
+            <section class="hero-copy reveal">
+                <p class="eyebrow">成都 / 软件开发工程师 / Frontend + Full Stack</p>
+                <h1>把体验、工程质量与真实业务落到同一张页面上。</h1>
+                <p class="hero-summary">
+                    我是侯杰，专注于前端开发与全栈项目实践，擅长使用 Vue.js、Uni-app
+                    构建现代化应用，也能基于 FastAPI 与 Python 完成完整的数据与接口联动。
+                    我重视代码质量、性能优化和用户体验，希望把每一次开发都做成既可靠又好用的产品。
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#contact" class="button button-primary">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        联系我
+                    </a>
+                    <a href="#projects" class="button button-secondary">
+                        <i class="fa-solid fa-layer-group"></i>
+                        查看项目
+                    </a>
+                </div>
+
+                <ul class="contact-strip" aria-label="快捷联系方式">
+                    <li>
+                        <a href="mailto:2669932873@qq.com">
+                            <i class="fa-regular fa-envelope"></i>
+                            2669932873@qq.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:15984273217">
+                            <i class="fa-solid fa-phone"></i>
+                            159 8427 3217
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Mr-Houjie" target="_blank" rel="noreferrer">
+                            <i class="fa-brands fa-github"></i>
+                            GitHub / Mr-Houjie
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="metric-row">
+                    <article class="metric-card">
+                        <strong>1+ 年</strong>
+                        <span>实习与项目实践</span>
+                    </article>
+                    <article class="metric-card">
+                        <strong>46%</strong>
+                        <span>页面加载优化提升</span>
+                    </article>
+                    <article class="metric-card">
+                        <strong>5 次</strong>
+                        <span>校奖学金获得经历</span>
+                    </article>
+                </div>
+            </section>
+
+            <aside class="profile-panel reveal">
+                <div class="profile-head">
+                    <img
+                        src="static/images/houjie-portrait.jpg"
+                        alt="侯杰头像"
+                        class="profile-avatar"
+                        loading="lazy"
+                    >
+                    <div>
+                        <p class="panel-label">个人资料</p>
+                        <h2>侯杰</h2>
+                        <p class="profile-role">软件开发工程师</p>
+                    </div>
+                </div>
+
+                <dl class="profile-list">
+                    <div>
+                        <dt>年龄</dt>
+                        <dd>21 岁</dd>
+                    </div>
+                    <div>
+                        <dt>位置</dt>
+                        <dd>成都</dd>
+                    </div>
+                    <div>
+                        <dt>学历</dt>
+                        <dd>软件工程本科</dd>
+                    </div>
+                    <div>
+                        <dt>学校</dt>
+                        <dd>西华师范大学</dd>
+                    </div>
+                    <div>
+                        <dt>方向</dt>
+                        <dd>Vue.js / Uni-app / FastAPI</dd>
+                    </div>
+                    <div>
+                        <dt>状态</dt>
+                        <dd>持续积累项目与工程经验</dd>
+                    </div>
+                </dl>
+
+                <div class="profile-tags" aria-label="技术标签">
+                    <span>Vue.js</span>
+                    <span>JavaScript</span>
+                    <span>FastAPI</span>
+                    <span>Python</span>
+                    <span>响应式设计</span>
+                    <span>性能优化</span>
+                </div>
+
+                <div class="social-actions">
+                    <a href="https://github.com/Mr-Houjie" target="_blank" rel="noreferrer">
+                        <i class="fa-brands fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="mailto:2669932873@qq.com">
+                        <i class="fa-regular fa-envelope"></i>
+                        邮件联系
+                    </a>
+                </div>
+            </aside>
+        </div>
+
+        <a class="scroll-cue" href="#about" aria-label="滚动到下一个区域">
+            <span>继续浏览</span>
+            <i class="fa-solid fa-arrow-down-long"></i>
+        </a>
+    </header>
+
+    <main>
+        <section class="content-section" id="about">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <p class="section-kicker">About</p>
+                    <h2>一位偏向产品感与工程感并重的开发者</h2>
+                    <p>
+                        我喜欢做能真正被使用的页面和系统。从界面层级、组件复用，到接口联调、加载速度和多端适配，
+                        都希望把“看起来好”和“用起来稳”一起做出来。
+                    </p>
+                </div>
+
+                <div class="overview-grid">
+                    <article class="glass-card reveal">
+                        <p class="card-eyebrow">个人概览</p>
+                        <h3>现代前端为主，全栈能力持续补强</h3>
+                        <p>
+                            熟悉 HTML5、CSS3、JavaScript、Vue.js 3、Uni-app，能够独立完成页面搭建、
+                            组件封装、数据联动与跨端适配。
+                        </p>
+                    </article>
+
+                    <article class="glass-card reveal">
+                        <p class="card-eyebrow">教育背景</p>
+                        <h3>西华师范大学 · 软件工程</h3>
+                        <p>2022 - 2026，本科在读。数据结构、数据库系统原理、Web 前端设计等核心课程成绩稳定。</p>
+                    </article>
+
+                    <article class="glass-card reveal">
+                        <p class="card-eyebrow">荣誉与证书</p>
+                        <h3>竞赛成果和持续学习并行</h3>
+                        <p>
+                            CET-4、计算机设计大赛省三等奖、移动创新赛省三等奖、校奖学金 5 次、三好学生。
+                        </p>
+                    </article>
+
+                    <article class="glass-card reveal">
+                        <p class="card-eyebrow">开发偏好</p>
+                        <h3>先建立结构，再打磨体验</h3>
+                        <p>
+                            重视信息层次、交互反馈、页面性能和团队协作流程，习惯从需求分析到实现细节全程跟进。
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section section-tinted" id="skills">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <p class="section-kicker">Skills</p>
+                    <h2>技术栈覆盖前端实现、工程协作与基础后端开发</h2>
+                    <p>核心优势集中在现代 Web 页面构建、跨端项目实践、性能优化与接口联调。</p>
+                </div>
+
+                <div class="skills-grid">
+                    <article class="skill-panel reveal">
+                        <div class="panel-title">
+                            <i class="fa-solid fa-code"></i>
+                            <div>
+                                <h3>开发技术栈</h3>
+                                <p>偏向高频落地能力</p>
+                            </div>
+                        </div>
+
+                        <div class="skill-meter">
+                            <div class="skill-header">
+                                <span>HTML5 / CSS3</span>
+                                <strong>95%</strong>
+                            </div>
+                            <div class="skill-track"><span data-progress="95"></span></div>
+                        </div>
+                        <div class="skill-meter">
+                            <div class="skill-header">
+                                <span>JavaScript</span>
+                                <strong>90%</strong>
+                            </div>
+                            <div class="skill-track"><span data-progress="90"></span></div>
+                        </div>
+                        <div class="skill-meter">
+                            <div class="skill-header">
+                                <span>Vue.js 3</span>
+                                <strong>88%</strong>
+                            </div>
+                            <div class="skill-track"><span data-progress="88"></span></div>
+                        </div>
+                        <div class="skill-meter">
+                            <div class="skill-header">
+                                <span>Uni-app</span>
+                                <strong>85%</strong>
+                            </div>
+                            <div class="skill-track"><span data-progress="85"></span></div>
+                        </div>
+                        <div class="skill-meter">
+                            <div class="skill-header">
+                                <span>Python / FastAPI</span>
+                                <strong>82%</strong>
+                            </div>
+                            <div class="skill-track"><span data-progress="82"></span></div>
+                        </div>
+                    </article>
+
+                    <article class="skill-panel reveal">
+                        <div class="panel-title">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            <div>
+                                <h3>工程与协作能力</h3>
+                                <p>偏向真实项目过程</p>
+                            </div>
+                        </div>
+
+                        <ul class="capability-list">
+                            <li>
+                                <strong>响应式设计</strong>
+                                <span>重视不同尺寸下的视觉稳定性与布局逻辑。</span>
+                            </li>
+                            <li>
+                                <strong>组件封装</strong>
+                                <span>封装 16 个复用组件，帮助项目减少冗余代码与重复开发。</span>
+                            </li>
+                            <li>
+                                <strong>性能优化</strong>
+                                <span>在小程序项目中将主包体积减少 43%，页面加载时间提升 46%。</span>
+                            </li>
+                            <li>
+                                <strong>版本协作</strong>
+                                <span>熟悉 Git 工作流，能够与产品、后端、设计协同推进需求落地。</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="spotlight-panel reveal">
+                        <p class="card-eyebrow">Why Me</p>
+                        <h3>更关注页面完成度，也在意交付之后的真实使用感受</h3>
+                        <p>
+                            我在项目中会兼顾视觉还原、交互细节、接口状态、加载效率和维护性，
+                            不把页面停留在“做出来”，而是希望它“能长期好用”。
+                        </p>
+                        <div class="spotlight-tags">
+                            <span>用户体验</span>
+                            <span>工程化实践</span>
+                            <span>多端适配</span>
+                            <span>接口联调</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="projects">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <p class="section-kicker">Projects</p>
+                    <h2>项目实践覆盖小程序、B 端移动平台与全栈 Web 应用</h2>
+                    <p>每个项目都尽量把业务目标、体验设计和技术实现串起来，而不是只完成单点功能。</p>
+                </div>
+
+                <div class="project-grid">
+                    <article class="project-card reveal">
+                        <div class="project-meta">
+                            <span>全栈开发</span>
+                            <span>2025.02 - 2025.06</span>
+                        </div>
+                        <h3>宠爱家微信小程序</h3>
+                        <p>
+                            面向宠物服务场景的综合平台，整合今日待办、宠物商场、社区交流和健康管理模块。
+                            深度应用微信云开发架构，提升组件复用率与多机型适配一致性。
+                        </p>
+                        <ul>
+                            <li>Flex 布局实现多机型适配，显示一致性达 98%</li>
+                            <li>组件化开发模式，代码复用率提升 40%</li>
+                            <li>获得移动创新赛与计算机设计大赛省级奖项</li>
+                        </ul>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-meta">
+                            <span>前端开发</span>
+                            <span>2025.07 - 2025.10</span>
+                        </div>
+                        <h3>好好选房经纪人</h3>
+                        <p>
+                            面向房产经纪人的 B 端移动管理平台，提供客源管理、房源管理、数据统计与系统设置等核心功能。
+                        </p>
+                        <ul>
+                            <li>主包体积减少 43%</li>
+                            <li>页面加载时间提升 46%</li>
+                            <li>服务 100+ 经纪人，用户好评率 95%+</li>
+                        </ul>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-meta">
+                            <span>全栈开发</span>
+                            <span>2025.03 - 2025.06</span>
+                        </div>
+                        <h3>知我记物</h3>
+                        <p>
+                            一款面向个人用户的物品管理平台，支持物品录入、快速检索、分类整理与保质提醒，
+                            让琐碎物品也能被高效管理。
+                        </p>
+                        <ul>
+                            <li>基于 Vue 3 与 FastAPI 构建前后端协作流程</li>
+                            <li>服务 200+ 用户，累计管理物品 5000+</li>
+                            <li>注重搜索效率与日常使用流畅度</li>
+                        </ul>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-meta">
+                            <span>全栈开发</span>
+                            <span>2025.11 - 2025.12</span>
+                        </div>
+                        <h3>心之眼 · 相机镜头参数库</h3>
+                        <p>
+                            为摄影爱好者打造的参数资料平台，支持镜头参数查询、对比分析、收藏管理与社区交流，
+                            兼顾内容结构与检索效率。
+                        </p>
+                        <ul>
+                            <li>收录 200+ 相机镜头数据</li>
+                            <li>服务 100+ 摄影爱好者</li>
+                            <li>强调数据展示清晰度与交互直观性</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section section-tinted" id="experience">
+            <div class="section-shell">
+                <div class="section-heading reveal">
+                    <p class="section-kicker">Experience</p>
+                    <h2>在真实团队里把需求、设计、接口与交付串起来</h2>
+                    <p>不仅写页面，也参与需求理解、原型构建、接口对接和版本协作。</p>
+                </div>
+
+                <div class="timeline reveal">
+                    <article class="timeline-item">
+                        <span class="timeline-date">2025.07 - 2025.10</span>
+                        <div class="timeline-body">
+                            <h3>成都左膀右臂科技有限公司 · 前端实习生</h3>
+                            <p>
+                                深度参与“好好选房经纪人”小程序开发，从需求分析到技术实现全程跟进，
+                                负责多个核心页面搭建，页面还原度达到 95%+。
+                            </p>
+                            <ul>
+                                <li>参与技术选型、产品原型评审与接口对接</li>
+                                <li>修复多端适配问题，确保项目按期上线</li>
+                                <li>封装 16 个复用组件，减少约 30% 冗余代码</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item">
+                        <span class="timeline-date">成长收获</span>
+                        <div class="timeline-body">
+                            <h3>能力沉淀</h3>
+                            <p>
+                                在实习和项目中，我逐渐建立起更完整的开发视角，不只关心功能能否完成，
+                                也会关注代码规范、性能、协作效率以及用户真正感知到的体验。
+                            </p>
+                            <ul>
+                                <li>深入掌握 Vue 3 生态与 Uni-app 跨端开发流程</li>
+                                <li>积累与产品、设计、后端协作的节奏感</li>
+                                <li>开始形成用户导向与工程化并重的开发习惯</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section contact-section" id="contact">
+            <div class="section-shell">
+                <div class="contact-panel reveal">
+                    <div class="contact-copy">
+                        <p class="section-kicker">Contact</p>
+                        <h2>如果你正在寻找一位重视体验与实现质量的开发者，我们可以聊聊。</h2>
+                        <p>
+                            目前我持续积累前端与全栈项目经验，也乐于参与更复杂、更贴近真实用户场景的产品建设。
+                        </p>
+                    </div>
+
+                    <div class="contact-grid">
+                        <a class="contact-card" href="mailto:2669932873@qq.com">
+                            <i class="fa-regular fa-envelope"></i>
+                            <div>
+                                <span>邮箱</span>
+                                <strong>2669932873@qq.com</strong>
+                            </div>
+                        </a>
+                        <a class="contact-card" href="tel:15984273217">
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <span>电话</span>
+                                <strong>159 8427 3217</strong>
+                            </div>
+                        </a>
+                        <a
+                            class="contact-card"
+                            href="https://github.com/Mr-Houjie"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <i class="fa-brands fa-github"></i>
+                            <div>
+                                <span>GitHub</span>
+                                <strong>github.com/Mr-Houjie</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Houjie. Crafted with HTML5, CSS3 and lightweight JavaScript.</p>
+    </footer>
+
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="返回顶部">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script src="script.minimal.js"></script>
+</body>
+</html>
